@@ -81,7 +81,11 @@
   <main>
     <section class="hero-section" id="hero">
       <div class="container hero-container">
-        <div class="hero-content">
+        <div class="hero-layout">
+          <div class="hero-avatar-wrapper animate-slide-up">
+            <img src="images/profile.jpg" alt="Vinay Pratap Raghuwanshi" class="hero-avatar" width="360" height="360">
+          </div>
+          <div class="hero-content">
 
           <h1 class="hero-title animate-slide-up">
             Hi, I'm <span class="highlight-text">Vinay</span>.
@@ -157,7 +161,8 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
     <section class="section" id="about">
       <div class="container">
@@ -369,42 +374,58 @@
 
         <div class="filter-bar">
           <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="auth">Auth &amp; Security</button>
+          <button class="filter-btn" data-filter="ai">AI &amp; RAG</button>
           <button class="filter-btn" data-filter="websocket">Real-Time &amp; WebSockets</button>
         </div>
 
         <div class="projects-grid">
 
-          <article class="project-card" data-category="auth" data-project="nexus-auth">
+          <article class="project-card" data-category="ai" data-project="docme">
             <div class="project-card-inner">
               <div class="project-meta">
-                <span class="project-badge">FastAPI &bull; Vanilla JS &bull; Solo Project</span>
+                <span class="project-badge">FastAPI &bull; LangGraph &bull; Supabase</span>
                 <span class="project-year">Featured</span>
               </div>
-              <h3 class="project-title">Nexus &mdash; Auth Portal</h3>
+              <h3 class="project-title">DocMe &mdash; AI Document Research Platform</h3>
               <p class="project-summary">
-                A full-stack authentication portal with a FastAPI backend and plain HTML/CSS/JS frontend served via
-                Uvicorn. Features cookie-based JWT auth via joserfc with HttpOnly, Argon2 password hashing, password
-                strength meter, real-time session countdown, and CORS credentials support.
+                An AI-powered document research and question-answering platform that helps users retrieve information from uploaded documents through conversational interaction. Features multi-format document ingestion (PDF, DOCX, TXT), 768-dim Gemini vector embeddings with pgvector cosine search, LangGraph Q&amp;A workflows, and real-time streaming citations.
               </p>
               <div class="project-tags">
+                <span>Python</span>
                 <span>FastAPI</span>
-                <span>joserfc JWT</span>
+                <span>LangGraph</span>
+                <span>LangChain</span>
+                <span>PostgreSQL</span>
+                <span>pgvector</span>
                 <span>SQLAlchemy</span>
-                <span>SQLite</span>
-                <span>Argon2</span>
-                <span>Pydantic v2</span>
-                <span>Cookie Auth</span>
+                <span>Gemini</span>
+                <span>Supabase</span>
               </div>
               <div class="project-footer">
                 <button class="btn-text open-modal-btn">
-                  View Full Specs &amp; Features
+                  View Full Specs &amp; Architecture
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </button>
+                <div class="project-links">
+                  <a href="https://docme-frontend.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-ext-link" title="Open Live Demo">
+                    <span>Live Demo</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                      <polyline points="15 3 21 3 21 9"></polyline>
+                      <line x1="10" y1="14" x2="21" y2="3"></line>
+                    </svg>
+                  </a>
+                  <a href="https://github.com/Vinay-1774/DocMe" target="_blank" rel="noopener noreferrer" class="project-ext-link" title="GitHub Repository">
+                    <span>GitHub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
@@ -412,32 +433,40 @@
           <article class="project-card" data-category="websocket" data-project="terminal-chat">
             <div class="project-card-inner">
               <div class="project-meta">
-                <span class="project-badge">FastAPI &bull; asyncio &bull; Solo Project</span>
+                <span class="project-badge">FastAPI &bull; WebSockets &bull; Redis</span>
                 <span class="project-year">Featured</span>
               </div>
-              <h3 class="project-title">Private Chat App &mdash; Terminal WebSocket DM System</h3>
+              <h3 class="project-title">NChat &mdash; Private Messaging Application</h3>
               <p class="project-summary">
-                A terminal-based private DM application where users connect via WebSockets, select an online peer, and
-                exchange messages in isolated rooms. Built with ConnectionManager registries, deterministic symmetric
-                room IDs, asyncio coroutine synchronization, Redis, and pydantic-settings.
+                A real-time private messaging application featuring WebSocket communication, asynchronous backend processing, and database-backed message handling. Built with ConnectionManager registries, deterministic symmetric room IDs, asyncio coroutine synchronization, Redis, and pydantic-settings.
               </p>
               <div class="project-tags">
+                <span>Python</span>
                 <span>FastAPI</span>
                 <span>WebSockets</span>
                 <span>async SQLAlchemy</span>
                 <span>Redis</span>
                 <span>SQLite (aiosqlite)</span>
                 <span>pydantic-settings</span>
+                <span>asyncio</span>
               </div>
               <div class="project-footer">
                 <button class="btn-text open-modal-btn">
-                  View Full Specs &amp; Features
+                  View Full Specs &amp; Architecture
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </button>
+                <div class="project-links">
+                  <a href="https://github.com/Vinay-1774/Nexus-Let-s-connect" target="_blank" rel="noopener noreferrer" class="project-ext-link" title="GitHub Repository">
+                    <span>GitHub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                    </svg>
+                  </a>
+                </div>
               </div>
             </div>
           </article>
@@ -731,15 +760,12 @@
         <section class="resume-section">
           <h2>Skills</h2>
           <ul class="resume-bullet-list">
-            <li><strong>Programming:</strong> Python, C++, SQL, Java, Bash</li>
+            <li><strong>Programming:</strong> Python, C++, SQL</li>
             <li><strong>Backend:</strong> FastAPI, REST APIs, WebSockets, Async Programming, Pydantic, Uvicorn</li>
-            <li><strong>AI/LLM:</strong> Prompt Engineering, RAG (Learning), Embeddings, Vector Search Concepts,
-              Semantic Search</li>
-            <li><strong>Databases:</strong> PostgreSQL, MySQL, SQLite, Redis</li>
-            <li><strong>Authentication &amp; Security:</strong> JWT, OAuth2, RBAC, Password Hashing, Session Management
-            </li>
-            <li><strong>Tools &amp; Platforms:</strong> Git, GitHub, Docker, Linux, Postman, PgAdmin, Vercel, n8n, VS
-              Code</li>
+            <li><strong>AI/LLM:</strong> LangGraph, LangChain, RAG, Prompt Engineering, Embeddings, Vector Search</li>
+            <li><strong>Databases:</strong> PostgreSQL, pgvector, Redis, SQLite, MySQL</li>
+            <li><strong>Authentication &amp; Security:</strong> JWT, OAuth2, RBAC, Password Hashing, Session Management</li>
+            <li><strong>Tools &amp; Platforms:</strong> Git, GitHub, Docker, Linux, Postman, PgAdmin, Vercel</li>
             <li><strong>Libraries:</strong> SQLAlchemy, Alembic, NumPy, Pandas, Matplotlib</li>
             <li><strong>Core Concepts:</strong> Data Structures &amp; Algorithms, OOP, API Design, Database Design,
               Database Indexing, Caching, System Design Fundamentals, Scalable Backend Architecture, Client-Server
@@ -751,45 +777,31 @@
           <h2>Projects</h2>
           <div class="resume-entry" style="margin-bottom: 1rem;">
             <div class="entry-row">
-              <strong>Nexus &mdash; Auth Portal</strong>
-              <span>FastAPI &bull; Vanilla JS &bull; Solo Project</span>
+              <strong>DocMe &mdash; AI Document Research Platform</strong>
+              <span>FastAPI &bull; LangGraph &bull; Supabase &bull; Featured</span>
             </div>
-            <p class="entry-sub"><em>Tech Stack: FastAPI, joserfc JWT, SQLAlchemy, SQLite, Argon2, Pydantic v2, Cookie
-                Auth</em></p>
+            <p class="entry-sub"><em>Tech Stack: Python, FastAPI, LangGraph, LangChain, PostgreSQL, pgvector, SQLAlchemy, Gemini, Supabase, Vercel</em></p>
             <ul class="resume-bullet-list">
-              <li>Built a full-stack authentication portal with FastAPI backend and plain HTML/CSS/JS frontend, served
-                directly via Uvicorn as static files.</li>
-              <li>Implemented secure cookie-based JWT authentication using joserfc with HttpOnly, SameSite=Lax,
-                configurable expiry, and production Secure flag.</li>
-              <li>Used Argon2 via Passlib for password hashing and Pydantic v2 for API-level validation including mobile
-                number, EmailStr, and password rules.</li>
-              <li>Added password strength meter, authentication tabs, toast notifications, real-time session countdown,
-                and warning/critical states.</li>
-              <li>Configured CORS for same-origin and Live Server development with credentials support for cookie
-                passthrough.</li>
+              <li>Built an AI-powered document research and Q&amp;A platform enabling users to interactively query multi-format documents (PDF, DOCX, TXT) with real-time streaming citations.</li>
+              <li>Engineered semantic chunking and 768-dimensional vector embedding generation via Google Gemini (text-embedding-004), indexed in PostgreSQL with pgvector cosine similarity search.</li>
+              <li>Designed multi-step agentic workflows using LangGraph state graphs to retrieve relevant document chunks and synthesize grounded answers with citations.</li>
+              <li>Implemented Server-Sent Events (SSE) for live token-by-token answer generation in the conversational chat interface.</li>
+              <li>Integrated Supabase Storage for persistent cloud object storage paired with local container caching across server deployments.</li>
             </ul>
           </div>
 
           <div class="resume-entry">
             <div class="entry-row">
-              <strong>Private Chat App &mdash; Terminal WebSocket DM System</strong>
-              <span>FastAPI &bull; asyncio &bull; Solo Project</span>
+              <strong>NChat &mdash; Private Messaging Application</strong>
+              <span>FastAPI &bull; WebSockets &bull; Redis &bull; Solo Project</span>
             </div>
-            <p class="entry-sub"><em>Tech Stack: FastAPI, WebSockets, async SQLAlchemy, Redis, SQLite (aiosqlite),
-                pydantic-settings</em></p>
+            <p class="entry-sub"><em>Tech Stack: Python, FastAPI, WebSockets, async SQLAlchemy, Redis, SQLite (aiosqlite), pydantic-settings</em></p>
             <ul class="resume-bullet-list">
-              <li>Built a terminal-based private DM application where users connect via WebSocket, select an online
-                peer, and exchange messages in isolated rooms.</li>
-              <li>Designed a ConnectionManager with separate user, lobby, and room registries for clean room isolation
-                without cross-talk.</li>
-              <li>Implemented deterministic symmetric room IDs using sorted user pairs, preventing duplicate rooms for
-                the same users.</li>
-              <li>Used asyncio.wait(FIRST_COMPLETED) to concurrently handle receive/send coroutines and cleanly cancel
-                the remaining task on disconnect.</li>
-              <li>Added lobby-wide online-user broadcasts, duplicate username detection, and /leave and /quit commands
-                for session management.</li>
-              <li>Configured Redis, database, and server URLs through pydantic-settings and environment variables
-                without code changes.</li>
+              <li>Built a real-time private messaging application featuring WebSocket communication, asynchronous backend processing, and database-backed message handling.</li>
+              <li>Designed a ConnectionManager with separate user, lobby, and room registries for clean room isolation without cross-talk.</li>
+              <li>Implemented deterministic symmetric room IDs using sorted user pairs, preventing duplicate rooms for the same users.</li>
+              <li>Used asyncio coroutine synchronization to concurrently handle send/receive streams with graceful disconnect handling.</li>
+              <li>Configured Redis and async database connections via pydantic-settings for scalable real-time state.</li>
             </ul>
           </div>
         </section>

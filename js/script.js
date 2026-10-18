@@ -1,69 +1,80 @@
 const API_BASE_URL = 'https://portfolio-2a9m.onrender.com';
 
 const PROJECT_DATA = {
-  'nexus-auth': {
-    badge: 'FastAPI · Vanilla JS · Solo Project',
+  'docme': {
+    badge: 'FastAPI · LangGraph · Supabase · Solo Project',
     year: 'Featured Project',
-    title: 'Nexus — Auth Portal',
-    summary: 'Full-stack authentication portal featuring a FastAPI backend and vanilla HTML/CSS/JS frontend served directly via Uvicorn static files with secure cookie-based JWTs.',
-    architecture: `[Client Web Browser (HTML/CSS/JS)]
-                     │
-             (HTTPS / Cookie Credentials)
-                     ▼
-          [Uvicorn Static & API Server]
-                     │
-         ┌───────────┴───────────┐
-         ▼                       ▼
- [joserfc JWT Engine]   [Argon2 / Passlib Hashing]
- (HttpOnly & SameSite)  (Pydantic v2 Validations)
-         │                       │
-         └───────────┬───────────┘
-                     ▼
-       [SQLAlchemy ORM + SQLite DB]`,
+    title: 'DocMe — AI Document Research Platform',
+    summary: 'An AI-powered document research and question-answering platform that helps users retrieve information from uploaded documents through conversational interaction.',
+    architecture: `[Client Browser (Vercel CDN)]
+              │
+      (HTTPS / SSE Streaming)
+              ▼
+   [FastAPI & Uvicorn (Render)]
+              │
+    ┌─────────┴─────────┐
+    ▼                   ▼
+[Document Ingestion]  [LangGraph Workflow]
+(PDF, DOCX, TXT)      (State Graph Orchestration)
+    │                   │
+    ▼                   ▼
+[Google Gemini Embed] [Gemini 1.5 Flash LLM]
+(text-embedding-004)  (Grounded Answers + Citations)
+    │                   │
+    └─────────┬─────────┘
+              ▼
+[PostgreSQL + pgvector (Supabase)]
+(Cosine Similarity & HNSW Index)
+              ▲
+              │ (Durable Cloud Storage)
+[Supabase Storage ('documents' bucket)]`,
     decisions: [
-      'Built a full-stack authentication portal with FastAPI backend and plain HTML/CSS/JS frontend, served directly via Uvicorn as static files.',
-      'Implemented secure cookie-based JWT authentication using joserfc with HttpOnly, SameSite=Lax, configurable expiry, and production Secure flag.',
-      'Used Argon2 via Passlib for password hashing and Pydantic v2 for API-level validation including mobile number, EmailStr, and password rules.',
-      'Added password strength meter, authentication tabs, toast notifications, real-time session countdown, and warning/critical states.',
-      'Configured CORS for same-origin and Live Server development with credentials support for cookie passthrough.'
+      'Engineered an end-to-end document research and intelligence platform enabling conversational Q&A over complex PDF, DOCX, and TXT files.',
+      'Implemented semantic chunking with token overlaps and generated 768-dimensional vector embeddings via Google Gemini (text-embedding-004).',
+      'Configured PostgreSQL with pgvector for persistent relational data and high-dimensional vector storage with cosine similarity indexing.',
+      'Designed multi-step agentic workflows using LangGraph state graphs to retrieve relevant document chunks and synthesize grounded answers with page-level citations.',
+      'Implemented real-time Server-Sent Events (SSE) streaming for live, token-by-token answer generation in the conversational chat interface.',
+      'Integrated Supabase Storage for persistent cloud object storage paired with local container caching across server deployments.',
+      'Enforced strict access control distinguishing private vs. public documents, document ownership, and secure JWT authentication.'
     ],
-    tech: ['FastAPI', 'joserfc JWT', 'SQLAlchemy', 'SQLite', 'Argon2', 'Passlib', 'Pydantic v2', 'Cookie Auth'],
-    github: 'https://github.com/Vinay-1774'
+    tech: ['Python', 'FastAPI', 'LangGraph', 'LangChain', 'PostgreSQL', 'pgvector', 'SQLAlchemy', 'Gemini', 'Supabase', 'Render', 'Vercel'],
+    github: 'https://github.com/Vinay-1774/DocMe',
+    live: 'https://docme-frontend.vercel.app/'
   },
 
   'terminal-chat': {
-    badge: 'FastAPI · asyncio · Solo Project',
+    badge: 'FastAPI · WebSockets · Solo Project',
     year: 'Featured Project',
-    title: 'Private Chat App — Terminal WebSocket DM System',
-    summary: 'Terminal-based private DM application enabling concurrent user connections via WebSockets to select online peers and exchange real-time messages in isolated rooms.',
-    architecture: `[Terminal / WebSocket Clients] ── (WS Handshake) ──> [FastAPI WebSocket Endpoint]
-                                                                  │
-                                                        [ConnectionManager]
-                                                   ┌──────────────┴──────────────┐
-                                                   ▼                             ▼
-                                        [User Registry / Lobby]       [Isolated Room Registry]
-                                                   │                             │
-                                                   └──────────────┬──────────────┘
-                                                                  ▼
-                                                      [Deterministic Symmetric Room ID]
-                                                      (Sorted User Pair Hashing)
-                                                                  │
-                                                                  ▼
-                                                   [asyncio.wait(FIRST_COMPLETED)]
-                                                   (Concurrent Send/Recv Coroutines)
-                                                                  │
-                                                                  ▼
-                                            [Redis + async SQLAlchemy + SQLite (aiosqlite)]`,
+    title: 'NChat — Private Messaging Application',
+    summary: 'A real-time private messaging application featuring WebSocket communication, asynchronous backend processing, and database-backed message handling.',
+    architecture: `[Client / WebSocket Handshake] ───> [FastAPI WebSocket Endpoint]
+                                              │
+                                     [ConnectionManager]
+                                ┌─────────────┴─────────────┐
+                                ▼                           ▼
+                     [User Lobby Registry]       [Isolated Room Registry]
+                                │                           │
+                                └─────────────┬─────────────┘
+                                              ▼
+                                 [Deterministic Symmetric Room ID]
+                                  (Sorted User Pair Hashing)
+                                              │
+                                              ▼
+                                [asyncio.wait(FIRST_COMPLETED)]
+                                (Concurrent Send/Recv Coroutines)
+                                              │
+                                              ▼
+                                [Redis State + async SQLAlchemy + SQLite]`,
     decisions: [
-      'Built a terminal-based private DM application where users connect via WebSocket, select an online peer, and exchange messages in isolated rooms.',
-      'Designed a ConnectionManager with separate user, lobby, and room registries for clean room isolation without cross-talk.',
-      'Implemented deterministic symmetric room IDs using sorted user pairs, preventing duplicate rooms for the same users.',
-      'Used asyncio.wait(FIRST_COMPLETED) to concurrently handle receive/send coroutines and cleanly cancel the remaining task on disconnect.',
-      'Added lobby-wide online-user broadcasts, duplicate username detection, and /leave and /quit commands for session management.',
-      'Configured Redis, database, and server URLs through pydantic-settings and environment variables without code changes.'
+      'Built a real-time private messaging application featuring WebSocket communication, asynchronous backend processing, and database-backed message handling.',
+      'Designed a ConnectionManager with isolated user, lobby, and room registries to prevent cross-talk and maintain clean channel separation.',
+      'Implemented deterministic symmetric room IDs using sorted user pairs, ensuring a single consistent room for any user pair.',
+      'Used asyncio coroutines to concurrently handle message transmission and reception with graceful disconnect and cancel handling.',
+      'Added lobby-wide online user status broadcasts, duplicate session detection, and room management commands (/leave, /quit).',
+      'Configured Redis and async database connections via pydantic-settings for scalable messaging state.'
     ],
-    tech: ['FastAPI', 'WebSockets', 'async SQLAlchemy', 'Redis', 'SQLite (aiosqlite)', 'pydantic-settings', 'asyncio'],
-    github: 'https://github.com/Vinay-1774'
+    tech: ['Python', 'FastAPI', 'WebSockets', 'async SQLAlchemy', 'Redis', 'SQLite (aiosqlite)', 'pydantic-settings', 'asyncio'],
+    github: 'https://github.com/Vinay-1774/Nexus-Let-s-connect'
   }
 };
 
@@ -478,6 +489,26 @@ function initProjectModal() {
 
 function renderProjectModalContent(data) {
   const modalContent = document.getElementById('modal-content');
+  const liveButton = data.live
+    ? `<a href="${escapeHtml(data.live)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        Live Demo
+      </a>`
+    : '';
+
+  const githubButton = data.github
+    ? `<a href="${escapeHtml(data.github)}" target="_blank" rel="noopener noreferrer" class="btn ${data.live ? 'btn-secondary' : 'btn-primary'}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+        </svg>
+        View Repository on GitHub
+      </a>`
+    : '';
+
   modalContent.innerHTML = `
     <div class="modal-arch-badge">${escapeHtml(data.badge)} &bull; ${escapeHtml(data.year)}</div>
     <h3 class="modal-heading">${escapeHtml(data.title)}</h3>
@@ -489,7 +520,7 @@ function renderProjectModalContent(data) {
     </div>
 
     <div class="modal-section">
-      <h4>Authenticated Features &amp; Implementation Details</h4>
+      <h4>Key Features &amp; Implementation Details</h4>
       <ul class="focus-list">
         ${data.decisions.map(item => `<li>${escapeHtml(item)}</li>`).join('')}
       </ul>
@@ -502,11 +533,9 @@ function renderProjectModalContent(data) {
       </div>
     </div>
 
-    <div class="modal-section" style="margin-top: 2rem;">
-      <a href="${escapeHtml(data.github)}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-        View Repository on GitHub
-      </a>
+    <div class="modal-section" style="margin-top: 2rem; display: flex; gap: 0.85rem; flex-wrap: wrap;">
+      ${liveButton}
+      ${githubButton}
     </div>
   `;
 }
